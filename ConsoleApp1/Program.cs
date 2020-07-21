@@ -16,7 +16,7 @@ namespace ConsoleApp1
         {
             //Indicator();
 
-            //Rules();
+            Rules();
 
             //Strategy();
 
