@@ -10,40 +10,74 @@ using Trady.Analysis;
 using Trady.Analysis.Extension;
 using Trady.Core.Infrastructure;
 using System.Data;
+using System.Windows.Forms;
 
 namespace ConsoleApp1
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            string _path = "GOST1-a.xls";
-            var t = new List<RowData>();
-            using (var stream = File.Open(_path, FileMode.Open, FileAccess.Read))
-            {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
-                {
-                    var candles = new List<IOhlcv>();
+            Console.WriteLine("Start ... ");
 
-                    var result = reader.AsDataSet();
-                    
-                    for (int i = 1; i < result.Tables[0].Rows.Count; i++)
+            foreach (var path in GetFilePathes())
+            {
+                SaveMoamelatToDb(GetMoamelat(GetRowData(path)));
+            }
+            //Indicator();
+
+            //Rules();
+
+            //Strategy();
+
+            Console.ReadKey();
+        }
+
+        private static void SaveMoamelatToDb(List<Moamelat> moamelats)
+        {
+
+            using (var db = new Context())
+            {
+                var df = db.Moamelats.ToList();
+                Console.WriteLine("Befor Save New Mahmole Total Exist : " + df.Count);
+
+                foreach (var item in moamelats)
+                {
+                   var Isexist =  db.Moamelats.AddIfNotExists(item, p => 
+                   p.Roz.Miladi == item.Roz.Miladi && p.Namad.Code == item.Namad.Code);
+                    if (Isexist)
                     {
-                        var row = result.Tables[0].Rows[i];
-                       
-                        t.Add(GetRecord(row));
+                        Console.WriteLine("Moamelat Roz " + item.Roz.Shamsi  
+                            +" Existed , Not Add ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Moamelat Roz " + item.Roz.Shamsi
+                            + " Added ");
                     }
                 }
-            }
-            //var rozes = new List<Roz>();
-            var namad = new Namad() {Code=t.First().Code,Name=t.First().Namad };
-            var moamele = new List<Moamelat>();
 
-            foreach (var item in t)
+                db.SaveChanges();
+
+                var d = db.Moamelats.ToList();
+                Console.WriteLine("Total Mahmole After Add Exist : " + d.Count);
+            }
+        }
+
+        private static List<Moamelat> GetMoamelat(List<RowData> rowData)
+        {
+            var namad = new Namad() { Code = rowData.First().Code, Name = rowData.First().Namad };
+            Console.WriteLine("Creat Moamelat For : " + namad.Name);
+            var moamelats = new List<Moamelat>();
+
+            foreach (var item in rowData)
             {
+                
                 var r = new Roz() { Miladi = item.Miladi, Shamsi = item.Shamsi, Step = "Day" };
 
-                moamele.Add(new Moamelat() {
+                moamelats.Add(new Moamelat()
+                {
                     Arzesh = item.ArzeshMoamele,
                     Close = item.close,
                     High = item.hight,
@@ -56,23 +90,62 @@ namespace ConsoleApp1
                     Vol = item.vol
                 });
             }
+            Console.WriteLine("Total Moamelat Created : " + moamelats.Count);
+            return moamelats;
+        }
 
-            using (var db = new Context())
+        private static List<RowData> GetRowData( string path)
+        {
+            Console.WriteLine("Get Row Data From  : " + path);
+
+            var rowData = new List<RowData>();
+
+            using (var stream = File.Open(path, FileMode.Open, FileAccess.Read))
             {
-               
-                db.Moamelats.AddRange(moamele);
-                db.SaveChanges();
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    var result = reader.AsDataSet();
 
-                var d = db.Moamelats.ToList();
-                Console.WriteLine(t.Count);
+                    for (int i = 1; i < result.Tables[0].Rows.Count; i++)
+                    {
+                        var row = result.Tables[0].Rows[i];
+
+                        rowData.Add(GetRecord(row));
+                    }
+                }
             }
-            //Indicator();
 
-            //Rules();
+            Console.WriteLine("ToTal Row Fetch : " + rowData.Count);
 
-            //Strategy();
+            return rowData;
+        }
 
-            Console.ReadKey();
+        private static List<string> GetFilePathes()
+        {
+            var paths = new List<string>();
+
+            var dialog = new OpenFileDialog
+            {
+                Multiselect = true,
+                Title = "Open Moamelat Excel Document",
+                Filter = "Excel Document|*.xlsx;*.xls"
+            };
+            using (dialog)
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (String file in dialog.FileNames)
+                    {
+                        paths.Add(file);
+                    }
+                }
+            }
+            Console.WriteLine("Selected File : " );
+            foreach (var path in paths)
+            {
+                Console.WriteLine(path);
+            }
+            return paths;
         }
 
         private static RowData GetRecord(DataRow row)

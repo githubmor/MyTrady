@@ -10,6 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            
         }
 
         protected override void Seed(ConsoleApp1.Context context)

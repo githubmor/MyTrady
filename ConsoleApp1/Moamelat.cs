@@ -4,7 +4,7 @@ namespace ConsoleApp1
 {
     public class Moamelat
     {
-        public int id { get; set; }
+        //public int id { get; set; }
         public int RozId { get; set; }
         public Roz Roz { get; set; }
         public int NamadId { get; set; }
