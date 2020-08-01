@@ -39,20 +39,20 @@ namespace ConsoleApp1
 
             using (var db = new Context())
             {
-                var df = db.Moamelats.ToList();
-                Console.WriteLine("Befor Save New Mahmole Total Exist : " + df.Count);
+                var existedMoamelats = db.Moamelats.Include("Namad").Include("Roz").ToList();
+                Console.WriteLine("Befor Save New Mahmole Total Exist : " + existedMoamelats.Count);
 
                 foreach (var item in moamelats)
                 {
-                   var Isexist =  db.Moamelats.AddIfNotExists(item, p => 
-                   p.Roz.Miladi == item.Roz.Miladi && p.Namad.Code == item.Namad.Code);
-                    if (Isexist)
+                    var isDuplicated = existedMoamelats.Exists(p => p.Namad.Code == item.Namad.Code & p.Roz.Miladi == item.Roz.Miladi);
+                    if (isDuplicated)
                     {
-                        Console.WriteLine("Moamelat Roz " + item.Roz.Shamsi  
-                            +" Existed , Not Add ");
+                        Console.WriteLine("Moamelat Roz " + item.Roz.Shamsi
+                            + " isDuplicated ");
                     }
                     else
                     {
+                        db.Moamelats.Add(item);
                         Console.WriteLine("Moamelat Roz " + item.Roz.Shamsi
                             + " Added ");
                     }

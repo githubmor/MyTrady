@@ -43,17 +43,18 @@ namespace ConsoleApp1
 
         //    dbSet.AddRange(entities.Except(entitiesExist));
         //}
-        public static bool AddIfNotExists<T>(this DbSet<T> dbSet, T entities, Expression<Func<T, bool>> predicate = null) where T : class, new()
-        {
+        //public static bool AddIfNotExists<T>(this DbSet<T> dbSet, T entities, Expression<Func<T, bool>> predicate = null) where T : class, new()
+        //{
 
 
-            var exists = predicate != null ? dbSet.Any(predicate) : dbSet.Any();
-            if (!exists)
-            {
-                dbSet.Add(entities);
-            }
-            return exists;
-        }
+        //    var exists = predicate != null ? dbSet.Any(predicate) : dbSet.Any();
+        //    if (!exists)
+        //    {
+        //        dbSet.Add(entities);
+        //    }
+        //    return exists;
+        //}
+        
 
     }
 }
