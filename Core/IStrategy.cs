@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Trady.Core.Infrastructure;
 
 namespace Core
 {
-    public class Class1
+    public interface IStrategy
     {
+        List<StrategicPoint> GetStrategicPoints(List<IOhlcv> ohlcvs);
     }
 }
