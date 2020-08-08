@@ -5,9 +5,9 @@ namespace Core
 {
     internal class BackTerstRunner
     {
-        private List<IStrategy> strategies;
+        private List<Strategy> strategies;
 
-        public BackTerstRunner(List<IStrategy> strategies)
+        public BackTerstRunner(List<Strategy> strategies)
         {
             this.strategies = strategies;
         }

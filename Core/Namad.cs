@@ -15,17 +15,11 @@ namespace Core
 
         private List<IOhlcv> _ohlcvs;
 
-        public Signal GetSignals(IStrategy strategy)
-        {
-            var s =  strategy.GetStrategicPoints(_ohlcvs);
-
-            return new SignalTrade(s).GetSignal();
-        }
-
-        public BackTestResult GetBackTestResult(List<IStrategy> strategies)
-        {
-            return new BackTerstRunner(strategies).GetTestResult();
-        }
+       
+        //public BackTestResult GetBackTestResult(List<IStrategy> strategies)
+        //{
+        //    return new BackTerstRunner(strategies).GetTestResult();
+        //}
 
     }
 }

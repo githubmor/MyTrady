@@ -120,14 +120,13 @@
     <Compile Include="IAndicator.cs" />
     <Compile Include="BackTestResult.cs" />
     <Compile Include="ICandel.cs" />
+    <Compile Include="Trader.cs" />
     <Compile Include="ITradeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Namad.cs" />
     <Compile Include="Signal.cs" />
-    <Compile Include="IStrategy.cs" />
-    <Compile Include="SignalTrade.cs" />
-    <Compile Include="StrategicPoint.cs" />
-    <Compile Include="Strategy\Sar_Ema.cs" />
+    <Compile Include="Strategy.cs" />
+    <Compile Include="Strategys\Sar_Ema.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
