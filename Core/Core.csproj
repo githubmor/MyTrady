@@ -120,6 +120,8 @@
     <Compile Include="IAndicator.cs" />
     <Compile Include="BackTestResult.cs" />
     <Compile Include="ICandel.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Service\TradeService.cs" />
     <Compile Include="Trader.cs" />
     <Compile Include="ITradeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Candel\" />
-    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

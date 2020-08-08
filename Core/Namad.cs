@@ -15,11 +15,7 @@ namespace Core
 
         private List<IOhlcv> _ohlcvs;
 
-       
-        //public BackTestResult GetBackTestResult(List<IStrategy> strategies)
-        //{
-        //    return new BackTerstRunner(strategies).GetTestResult();
-        //}
-
     }
+
+    
 }

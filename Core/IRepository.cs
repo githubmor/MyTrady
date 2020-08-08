@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    interface ITradeService
+    public interface IRepository
     {
-        List<Namad> GetNamads(int period);
-
-         void SaveNamads(List<Namad> namads);
+        List<Namad> GetNamadList(int period);
+        void SaveNamads(List<Namad> namads);
     }
 }
