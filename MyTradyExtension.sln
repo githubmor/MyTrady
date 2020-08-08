@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.1209
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTradyExtension", "MyTradyExtension\MyTradyExtension.csproj", "{92B965C3-8D8F-40E2-8148-AEA8CDBA3C2E}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{43E2BEEE-A313-4EFB-B977-1584A9D9BA2E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{07650307-C002-42DE-841E-4BBBB0047BBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradeData", "TradeData\TradeData.csproj", "{1C894411-EB41-46E5-8222-1FC410D8592A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{07650307-C002-42DE-841E-4BBBB0047BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07650307-C002-42DE-841E-4BBBB0047BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07650307-C002-42DE-841E-4BBBB0047BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C894411-EB41-46E5-8222-1FC410D8592A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C894411-EB41-46E5-8222-1FC410D8592A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C894411-EB41-46E5-8222-1FC410D8592A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C894411-EB41-46E5-8222-1FC410D8592A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
