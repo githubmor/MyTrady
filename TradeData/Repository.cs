@@ -18,9 +18,12 @@ namespace TradeData
 
                 foreach (var item in r)
                 {
-                    //TODO اینجا باید ایتم های معاملاتی تبدیل به نماد شوند
-                    //List<IOhlcv> ohlcvs = new List<IOhlcv>();
-                    //result.Add(new Core.Namad(item.Name,item.Moamelatss.))
+                    List<Ohcv> ohlcvs = new List<Ohcv>();
+                    foreach (var i in item.Moamelatss)
+                    {
+                        ohlcvs.Add(new Ohcv() { Close = i.Close, High = i.High, Low = i.Low, Open = i.Open, Volume = i.Vol });
+                    }
+                    result.Add(new Mapper().GetNamad(item.Name, ohlcvs));
                 }
             }
 
@@ -29,7 +32,18 @@ namespace TradeData
 
         public void SaveNamads(List<Core.Namad> namads)
         {
-            throw new NotImplementedException();
+            foreach (var namad in namads)
+            {
+                var ms = new Mapper().GetMoamelat(namad);
+                using (var db = new Context())
+                {
+                    db.Namads.Add(new Namad() { Code = namad.Code,ISin = namad.ISin ,Name=namad.Name,
+                        Moamelatss =ms.ConvertAll<Moamelat>(p=>
+                        new Moamelat() {Arzesh=p.Arzesh,Close=p.Close,High=p.High,Last=p.Last,Low=p.Low,Open=p.Open,Tedad })})
+                }
+            }
+            
+            
         }
     }
 }

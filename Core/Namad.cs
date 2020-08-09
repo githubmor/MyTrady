@@ -13,7 +13,7 @@ namespace Core
         }
         public string Name { get; set; }
 
-        private List<IOhlcv> _ohlcvs;
+        public List<IOhlcv> _ohlcvs { get; set; }
 
     }
 

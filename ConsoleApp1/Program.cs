@@ -213,7 +213,6 @@ namespace ConsoleApp1
                 Console.WriteLine(item.DateTime + " - " + item.Quantity);
             }
 
-
         }
 
 

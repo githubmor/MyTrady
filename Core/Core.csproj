@@ -64,6 +64,7 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -121,6 +122,7 @@
     <Compile Include="BackTestResult.cs" />
     <Compile Include="ICandel.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Service\TradeService.cs" />
     <Compile Include="Trader.cs" />
     <Compile Include="ITradeService.cs" />
